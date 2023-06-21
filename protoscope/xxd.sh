@@ -1,14 +1,36 @@
 #!/bin/bash
 
-xxd -r -ps hexdata.txt
-#
-# @
-# &type.googleapis.com/proto3.TestMessageBexpected_value
+# xxd: binary <-> hexdump
 
-xxd -r -ps hexdata.txt | protoscope
-# 1: {
-#  1: {"type.googleapis.com/proto3.TestMessage"}
-#  2: {`1005420e65787065637465645f76616c756500000000`}
-# }
+# txt -> hexdump
+xxd -p helloworld.txt >helloworld-txt-hex.txt # -p: plain
+# [as-is]
+# hello world
+# [to-be]
+# 상대주소:   2바이트씩 묶어서 출력(16진수 1자리는 4bit)       ASCII
+# 00000000: 6865 6c6c 6f20 7xx76f 726c 64            hello world
 
-xxd -r -ps <<<'1005420e65787065637465645f76616c756500000000' | protoscope
+# txt -> binary
+xxd -b helloworld.txt >helloworld-txt-bin.txt
+# [as-is]
+# hello world
+# [to-be]
+# 00000000: 01101000 01100101 01101100 01101100 01101111 00100000  hello
+# 00000006: 01110111 01101111 01110010 01101100 01100100           world
+
+# binary -> hexdump
+xxd helloworld-txt-bin.txt >helloworld-bin-hex.txt
+# 00000000: 3030 3030 3030 3030 3a20 3031 3130 3130  00000000: 011010
+# 00000010: 3030 2030 3131 3030 3130 3120 3031 3130  00 01100101 0110
+# 00000020: 3131 3030 2030 3131 3031 3130 3020 3031  1100 01101100 01
+# 00000030: 3130 3131 3131 2030 3031 3030 3030 3020  101111 00100000
+# 00000040: 2068 656c 6c6f 200a 3030 3030 3030 3036   hello .00000006
+# 00000050: 3a20 3031 3131 3031 3131 2030 3131 3031  : 01110111 01101
+# 00000060: 3131 3120 3031 3131 3030 3130 2030 3131  111 01110010 011
+# 00000070: 3031 3130 3020 3031 3130 3031 3030 2020  01100 01100100
+# 00000080: 2020 2020 2020 2020 2077 6f72 6c64 0a             world.
+
+# hexdump -> binary
+xxd -r helloworld-bin-hex.txt >helloworld-hex-bin.txt # -r: hexdump -> binary (reverse)
+# 00000000: 01101000 01100101 01101100 01101100 01101111 00100000  hello
+# 00000006: 01110111 01101111 01110010 01101100 01100100           world
