@@ -1,10 +1,10 @@
 package com.gilbert.grpc;
 
+import com.gilbert.grpc.service.SampleServiceImpl;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.gilbert.grpc.service.SampleServiceImpl;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
