@@ -9,24 +9,20 @@ import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 
 @Slf4j
-//@Service
 @GrpcService
 public class SampleService extends SampleServiceGrpc.SampleServiceImplBase {
-    
-    @PostConstruct
-    public void test() {
-        System.out.println("log = " + log);
-    }
 
     @Override
     public void sampleCall(SampleRequest request, StreamObserver<SampleResponse> responseObserver) {
-        log.info("SampleServiceImpl#sampleCall - {}, {}", request.getUserId(), request.getMessage());
+        log.info("SampleService#sampleCall - {}, {}", request.getUserId(), request.getMessage());
+
         SampleResponse sampleResponse = SampleResponse.newBuilder()
-            .setMessage("grpc service response")
+            .setMessage("response from grpc service")
             .build();
 
         responseObserver.onNext(sampleResponse);
         responseObserver.onCompleted();
+        log.info("SampleService#sampleCall - completed");
     }
 
 }
