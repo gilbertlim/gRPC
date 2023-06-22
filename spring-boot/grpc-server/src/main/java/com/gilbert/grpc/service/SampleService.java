@@ -4,7 +4,6 @@ import com.gilbert.grpc.proto.SampleRequest;
 import com.gilbert.grpc.proto.SampleResponse;
 import com.gilbert.grpc.proto.SampleServiceGrpc;
 import io.grpc.stub.StreamObserver;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 
