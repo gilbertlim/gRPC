@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class GrpcClientService {
 
     @GrpcClient("local-grpc-server")
-    private  SampleServiceGrpc.SampleServiceBlockingStub sampleStub;
+    private SampleServiceGrpc.SampleServiceBlockingStub sampleStub;
 
     public void sampleCall() {
         SampleRequest sampleRequest = SampleRequest.newBuilder()

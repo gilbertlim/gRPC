@@ -7,6 +7,7 @@ person.email = 'gilbert.app@gmail.com'
 
 try:
   f = open('myaddress','wb')
+  print(person.SerializeToString())
   f.write(person.SerializeToString()) # 직렬화
   f.close()
   print('file is wriiten')
