@@ -31,6 +31,7 @@ plugins {
 	id 'org.springframework.boot' version '2.6.13'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'com.google.protobuf' version "${protobufPluginVersion}"
+    id 'idea'
 }
 
 group = 'com.gilbert.grpc'
@@ -82,6 +83,15 @@ protobuf {
 			grpc {}
 		}
 	}
+}
+
+idea {
+  module {
+    sourceDirs += file("src/generated/main/java")
+    sourceDirs += file("src/generated/main/grpc")
+    generatedSourceDirs += file("src/generated/main/java")
+    generatedSourceDirs += file("src/generated/main/grpc")
+  }
 }
 ```
 
